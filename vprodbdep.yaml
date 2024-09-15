@@ -29,6 +29,13 @@ spec:
                 secretKeyRef:
                   name: app-secret
                   key: db-pass
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
       nodeSelector:
         zone: us-east-1a
       volumes:
@@ -36,7 +43,6 @@ spec:
           awsElasticBlockStore:
             volumeID: vol-077b9cec93034d131
             fsType: ext4
-
       initContainers:
         - name: busybox
           image: busybox:latest
